@@ -15,6 +15,7 @@ public class Drone
 
     public Drone()
     {
+
     }
 
     public Drone(Battery battery, Thrust thrust, Orientation orientation, Velocity velocity, Position position)
@@ -28,7 +29,7 @@ public class Drone
 
     public Velocity calculateVelocity()
     {
-        Vector3D velocityVector = new Vector3D(getPosition().getxCoordinate() - getPreviousPosition().getxCoordinate(), 0 , getPosition().getxCoordinate() - getPreviousPosition().getxCoordinate());
+        Vector3D velocityVector = new Vector3D(getPosition().getxCoordinate() - getPreviousPosition().getxCoordinate(), 0 , getPosition().getzCoordinate() - getPreviousPosition().getzCoordinate());
         //velocityVector.scalarMultiply(1/MeineKonstanten.GET_DATA_SLEEP);
         return new Velocity(velocityVector);
     }

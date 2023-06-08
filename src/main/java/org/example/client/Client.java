@@ -19,19 +19,19 @@ public class Client implements Runnable
     public void run()
     {
         socket = verbindungAufbauen("127.0.0.1", 10666);
+        Drone drone = new Drone();
+        HightSensor hightSensor = new HightSensor();
+        GpsSensor gpsSensor = new GpsSensor();
 
-        do
+        while (true)
         {
-            Drone drone = new Drone();
-            HightSensor hightSensor = new HightSensor();
-            GpsSensor gpsSensor = new GpsSensor();
             String[] droneData = csvParser(sendeKommandoUndWarteAufAntwort(socket, Kommandos.GET_DATA));
             if (drone.getPosition() == null)
             {
                 drone.setPreviousPosition(new Position(new Vector3D(-122,50,500)));
             } else
             {
-                drone.setPreviousPosition(new Position(new Vector3D(0,0,0)));
+                drone.setPreviousPosition(drone.getPosition());
             }
             hightSensor.setHight(Float.parseFloat(droneData[1]));
             gpsSensor.setxCoordinate(Float.parseFloat(droneData[0]));
@@ -43,7 +43,7 @@ public class Client implements Runnable
             sendeKommandoUndWarteAufAntwort(socket, Kommandos.ADD_FORCE);
             sleep(MeineKonstanten.GET_DATA_SLEEP);
         }
-        while (true);
+
     }
 
     private void sleep(long duration)
