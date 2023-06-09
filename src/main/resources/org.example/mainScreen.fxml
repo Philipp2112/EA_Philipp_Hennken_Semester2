@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.PlanungssoftwareDelegate">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.PlanungssoftwareDelegate">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -12,14 +12,28 @@
             <Button layoutX="12.0" layoutY="159.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Planung" />
             <Button layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Home" />
          </children></Pane>
-      <Pane prefHeight="400.0" prefWidth="431.0" />
+      <Pane prefHeight="400.0" prefWidth="431.0">
+         <children>
+            <VBox layoutX="72.0" layoutY="59.0" prefHeight="214.0" prefWidth="117.0">
+               <children>
+
+               </children>
+            </VBox>
+         </children>
+      </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label layoutX="15.0" layoutY="88.0" prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
-            <Label fx:id="anzeigeX" layoutX="12.0" layoutY="116.0" prefHeight="38.0" prefWidth="100.0" />
-            <Label layoutX="15.0" layoutY="155.0" prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
-            <Label layoutX="15.0" layoutY="223.0" prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
-            <Label layoutX="15.0" layoutY="308.0" prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
+            <VBox layoutX="12.0" layoutY="37.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
+                  <Label prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
+                  <Label fx:id="anzeigeX" prefHeight="39.0" prefWidth="119.0" />
+                  <Label prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
+                  <Label fx:id="anzeigeY" prefHeight="39.0" prefWidth="119.0" />
+                  <Label prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
+                  <Label fx:id="anzeigeZ" prefHeight="39.0" prefWidth="119.0" />
+               </children>
+            </VBox>
 
          </children>
       </Pane>

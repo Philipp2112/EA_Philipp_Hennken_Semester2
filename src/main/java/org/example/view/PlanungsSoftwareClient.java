@@ -32,6 +32,8 @@ public class PlanungsSoftwareClient implements Runnable
                 Platform.runLater(() ->
                 {
                     DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
+                    DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
+                    DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
                 });
                 Thread.sleep(1000);
             }

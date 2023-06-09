@@ -72,6 +72,7 @@ public class DroneController
             public void changed(ObservableValue<? extends Number> observableValue, Number alteZKoordinate, Number neueZKoordinate)
             {
                 drone.getPosition().setZ((Double) neueZKoordinate);
+                System.out.println("change z");
             }
         });
     }

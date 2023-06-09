@@ -10,10 +10,15 @@ import javafx.beans.binding.Bindings;
 public class PlanungssoftwareDelegate
 {
     public Label anzeigeX;
+    public Label anzeigeY;
+    public Label anzeigeZ;
 
     @FXML
-    private void initalize()
+    private void initialize()
     {
+        System.out.println("binding wird gemacht");
         Bindings.bindBidirectional(anzeigeX.textProperty(), DroneController.getClassInstance().xKoordinateProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(anzeigeY.textProperty(), DroneController.getClassInstance().yKoordinateProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(anzeigeZ.textProperty(), DroneController.getClassInstance().zKoordinateProperty(), new NumberStringConverter());
     }
 }
