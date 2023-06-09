@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.PlanungssoftwareDelegate">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button layoutX="12.0" layoutY="240.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Fliegen" />
+            <Button layoutX="12.0" layoutY="159.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Planung" />
+            <Button layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Home" />
+         </children></Pane>
+      <Pane prefHeight="400.0" prefWidth="431.0" />
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="15.0" layoutY="88.0" prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
+            <Label fx:id="anzeigeX" layoutX="12.0" layoutY="116.0" prefHeight="38.0" prefWidth="100.0" />
+            <Label layoutX="15.0" layoutY="155.0" prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
+            <Label layoutX="15.0" layoutY="223.0" prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
+            <Label layoutX="15.0" layoutY="308.0" prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
+
+         </children>
+      </Pane>
+   </children>
+</HBox>

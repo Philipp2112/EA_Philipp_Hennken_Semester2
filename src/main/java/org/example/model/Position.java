@@ -1,56 +1,54 @@
 package org.example.model;
 
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-
 public class Position
 {
-    public Position(Vector3D positionVector)
-    {
-        this.positionVector = positionVector;
-        this.xCoordinate = positionVector.getX();
-        this.yCoordinate = positionVector.getY();
-        this.zCoordinate = positionVector.getZ();
-    }
+    private double x;
 
-    private double xCoordinate;
     //height of the drone is y
-    private double yCoordinate;
-    private double zCoordinate;
+    private double y;
+    private double z;
 
-    private Vector3D positionVector = new Vector3D(xCoordinate, yCoordinate, zCoordinate);
-
-
-    public double getxCoordinate()
+    public Position(double x, double y, double z)
     {
-        return xCoordinate;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public void setxCoordinate(double xCoordinate)
+   // private Vector3D positionVector = new Vector3D(xCoordinate, yCoordinate, zCoordinate);
+
+
+    public double getX()
     {
-        this.xCoordinate = xCoordinate;
+        return x;
     }
 
-    public double getyCoordinate()
+    public void setX(double x)
     {
-        return yCoordinate;
+        this.x = x;
     }
 
-    public void setyCoordinate(double yCoordinate)
+    public double getY()
     {
-        this.yCoordinate = yCoordinate;
+        return y;
     }
 
-    public double getzCoordinate()
+    public void setY(double y)
     {
-        return zCoordinate;
+        this.y = y;
     }
 
-    public void setzCoordinate(double zCoordinate)
+    public double getZ()
     {
-        this.zCoordinate = zCoordinate;
+        return z;
     }
 
-    public Vector3D getPositionVector()
+    public void setZ(double z)
+    {
+        this.z = z;
+    }
+
+   /* public Vector3D getPositionVector()
     {
         return positionVector;
     }
@@ -66,5 +64,15 @@ public class Position
         return "Position{\n" +
                 positionVector.getX() + "\n"  + positionVector.getY() + "\n" + positionVector.getZ() +
                 "}\n\n";
+    }*/
+
+    @Override
+    public String toString()
+    {
+        return "Position{" +
+                "xCoordinate=" + x +
+                ", yCoordinate=" + y +
+                ", zCoordinate=" + z +
+                '}';
     }
 }

@@ -1,7 +1,6 @@
 package org.example.model;
 
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-import org.example.client.MeineKonstanten;
 
 public class Drone
 {
@@ -10,29 +9,28 @@ public class Drone
     private Orientation orientation;
     private Velocity velocity;
     private Position position;
-
     private Position previousPosition;
 
-    public Drone()
+    public Drone(Position position)
     {
-
+        this.position = position;
     }
 
-    public Drone(Battery battery, Thrust thrust, Orientation orientation, Velocity velocity, Position position)
+    /*public Drone(Battery battery, Thrust thrust, Orientation orientation, Velocity velocity, Position position)
     {
         this.battery = battery;
         this.thrust = thrust;
         this.orientation = orientation;
         this.velocity = velocity;
         this.position = position;
-    }
+    }*/
 
-    public Velocity calculateVelocity()
+    /*public Velocity calculateVelocity()
     {
-        Vector3D velocityVector = new Vector3D(getPosition().getxCoordinate() - getPreviousPosition().getxCoordinate(), 0 , getPosition().getzCoordinate() - getPreviousPosition().getzCoordinate());
+        Vector3D velocityVector = new Vector3D(getPosition().getX() - getPreviousPosition().getX(), 0 , getPosition().getZ() - getPreviousPosition().getZ());
         //velocityVector.scalarMultiply(1/MeineKonstanten.GET_DATA_SLEEP);
         return new Velocity(velocityVector);
-    }
+    }*/
 
     public Orientation getOrientation()
     {
@@ -83,4 +81,5 @@ public class Drone
     {
         this.position = position;
     }
+
 }

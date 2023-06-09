@@ -1,9 +1,9 @@
-package org.example.client;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-import org.example.model.Drone;
-import org.example.model.GpsSensor;
-import org.example.model.HightSensor;
-import org.example.model.Position;
+package org.example.communication;
+import com.google.gson.Gson;
+import org.example.client.Kommandos;
+import org.example.client.MeineKonstanten;
+import org.example.client.Strings;
+import org.example.model.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,39 +12,29 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client implements Runnable
+public class DroneControllClient implements Runnable
 {
     private Socket socket = null;
+    private Drone drone = new Drone(new Position(0,0,0));
 
     public void run()
     {
         socket = verbindungAufbauen("127.0.0.1", 10666);
-        Drone drone = new Drone();
-        HightSensor hightSensor = new HightSensor();
-        GpsSensor gpsSensor = new GpsSensor();
+        Gson gsonObject = new Gson();
 
         while (true)
         {
-            String[] droneData = csvParser(sendeKommandoUndWarteAufAntwort(socket, Kommandos.GET_DATA));
-            if (drone.getPosition() == null)
-            {
-                drone.setPreviousPosition(new Position(new Vector3D(-122,50,500)));
-            } else
-            {
-                drone.setPreviousPosition(drone.getPosition());
-            }
-            hightSensor.setHight(Float.parseFloat(droneData[1]));
-            gpsSensor.setxCoordinate(Float.parseFloat(droneData[0]));
-            gpsSensor.setzCoordinate(Float.parseFloat(droneData[2]));
-            drone.setPosition(new Position(new Vector3D(gpsSensor.getxCoordinate(), hightSensor.getHight(), gpsSensor.getzCoordinate())));
-            System.out.println(drone.getPosition());
-            System.out.println(drone.getPreviousPosition());
-            System.out.println(drone.calculateVelocity());
-            sendeKommandoUndWarteAufAntwort(socket, Kommandos.ADD_FORCE);
+            drone.setPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, Kommandos.GET_DATA),Position.class));
+            DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
+            DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
+            DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
+            System.out.println(drone.getPosition().toString());
             sleep(MeineKonstanten.GET_DATA_SLEEP);
         }
 
     }
+
+
 
     private void sleep(long duration)
     {
@@ -76,12 +66,13 @@ public class Client implements Runnable
         }
     }
 
-    private String[] csvParser(String string)
+
+    /*private String[] csvParser(String string)
     {
         String newString = string.replace(",", ".");
         String[] inputString = newString.split(";");
         return inputString;
-    }
+    }*/
 
     private Socket verbindungAufbauen(String host, int port)
     {
@@ -112,5 +103,8 @@ public class Client implements Runnable
         }
     }
 
-
+    public Drone getDrone()
+    {
+        return drone;
+    }
 }
