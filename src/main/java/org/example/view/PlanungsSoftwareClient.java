@@ -9,6 +9,7 @@ import org.example.model.Position;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -23,17 +24,22 @@ public class PlanungsSoftwareClient implements Runnable
         try
         {
             Gson gson = new Gson();
+            BufferedReader inFromDroneControllerServer = null;
+            PrintWriter outToDroneController = null;
+            int i = 0;
             while (true)
             {
                 Socket clientSocket = new Socket("localhost", 55555);
-                BufferedReader inFromDroneControllerServer = null;
                 inFromDroneControllerServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                outToDroneController = new PrintWriter(clientSocket.getOutputStream(), true);
+                outToDroneController.println(i++);
                 drone.setPosition(gson.fromJson(inFromDroneControllerServer.readLine(),Position.class));
                 Platform.runLater(() ->
                 {
                     DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
                     DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
                     DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
+                    DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX()-drone.getPosition().getZ());
                 });
                 Thread.sleep(1000);
             }

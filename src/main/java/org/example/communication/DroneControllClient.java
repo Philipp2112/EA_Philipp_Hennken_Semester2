@@ -25,6 +25,8 @@ public class DroneControllClient implements Runnable
         while (true)
         {
             drone.setPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, Kommandos.GET_DATA),Position.class));
+            DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX());
+            drone.setPreviousPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, Kommandos.GET_DATA),Position.class));
             DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
             DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
             DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
@@ -66,13 +68,6 @@ public class DroneControllClient implements Runnable
         }
     }
 
-
-    /*private String[] csvParser(String string)
-    {
-        String newString = string.replace(",", ".");
-        String[] inputString = newString.split(";");
-        return inputString;
-    }*/
 
     private Socket verbindungAufbauen(String host, int port)
     {

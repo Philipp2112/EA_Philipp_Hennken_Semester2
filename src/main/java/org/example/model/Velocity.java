@@ -1,18 +1,16 @@
 package org.example.model;
 
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-
 public class Velocity
 {
     private double xVelocity;
     private double yVelocity;
     private double zVelocity;
 
-    private Vector3D velocityVector = new Vector3D(xVelocity, yVelocity, zVelocity);
+    private double velocity = 0.0;
 
-    public Velocity(Vector3D velocityVector)
+    public Velocity(double velocityVector)
     {
-        this.velocityVector = velocityVector;
+        this.velocity = velocityVector;
     }
 
     public double getxVelocity()
@@ -45,21 +43,21 @@ public class Velocity
         this.zVelocity = zVelocity;
     }
 
-    public Vector3D getVelocityVector()
+    public double getVelocity()
     {
-        return velocityVector;
+        return velocity;
     }
 
-    public void setVelocityVector(Vector3D velocityVector)
+    public void setVelocity(double velocity)
     {
-        this.velocityVector = velocityVector;
+        this.velocity = velocity;
     }
 
     @Override
     public String toString()
     {
         return "Velocity{" +
-                velocityVector +
+                velocity +
                 '}';
     }
 }

@@ -36,15 +36,15 @@ public class DroneController
 
     private void propertyListeners()
     {
-      /*  this.geschwindigkeitsProperty.addListener(new ChangeListener<Number>()
+        this.geschwindigkeitsProperty.addListener(new ChangeListener<Number>()
         {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number alteGeschwindigkeit, Number neueGeschwindigkeit)
             {
-                drone.getGeschwindigkeit().setGeschwindigkeit((Double) neueGeschwindigkeit);
+                drone.setVelocity(new Velocity((Double) neueGeschwindigkeit));
                 System.out.println("Geschwindigkeit hat sich geändert!!!");
             }
-        });*/
+        });
 
         this.xKoordinateProperty.addListener(new ChangeListener<Number>()
         {

@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import org.example.model.Drone;
 import org.example.model.Position;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -66,6 +68,7 @@ public class DroneControllServer implements Runnable
 
         Socket client;
         PrintWriter printWriter;
+        BufferedReader bufferedReader = null;
         Gson gson = new Gson();
         try
         {
@@ -82,6 +85,9 @@ public class DroneControllServer implements Runnable
 
                 // Diese sendet alle Daten des Beispiel-Cars ueber die Methode "toJSON"
                 printWriter.println(gson.toJson(drone.getPosition()).toString());
+
+                bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                System.out.println(bufferedReader.readLine());
 
 
                 // Danach wird der PrintWriter und das Socket zum Client wieder geschlossen

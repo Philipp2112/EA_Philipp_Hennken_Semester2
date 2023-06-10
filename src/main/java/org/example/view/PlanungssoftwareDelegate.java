@@ -12,6 +12,7 @@ public class PlanungssoftwareDelegate
     public Label anzeigeX;
     public Label anzeigeY;
     public Label anzeigeZ;
+    public Label anzeigeGeschwindigkeit;
 
     @FXML
     private void initialize()
@@ -20,5 +21,6 @@ public class PlanungssoftwareDelegate
         Bindings.bindBidirectional(anzeigeX.textProperty(), DroneController.getClassInstance().xKoordinateProperty(), new NumberStringConverter());
         Bindings.bindBidirectional(anzeigeY.textProperty(), DroneController.getClassInstance().yKoordinateProperty(), new NumberStringConverter());
         Bindings.bindBidirectional(anzeigeZ.textProperty(), DroneController.getClassInstance().zKoordinateProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(anzeigeGeschwindigkeit.textProperty(), DroneController.getClassInstance().getGeschwindigkeitsProperty(), new NumberStringConverter());
     }
 }
