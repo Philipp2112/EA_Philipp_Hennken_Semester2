@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 
 public class PlanungsSoftwareClient implements Runnable
 {
+    private String outputStringToController;
     private Drone drone = new Drone(new Position(0,0,0));
 
     @Override
@@ -31,8 +32,9 @@ public class PlanungsSoftwareClient implements Runnable
             {
                 Socket clientSocket = new Socket("localhost", 55555);
                 inFromDroneControllerServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                System.out.println(PlanungssoftwareDelegate.getCommandToController());
                 outToDroneController = new PrintWriter(clientSocket.getOutputStream(), true);
-                outToDroneController.println(i++);
+                outToDroneController.println(PlanungssoftwareDelegate.getCommandToController());
                 drone.setPosition(gson.fromJson(inFromDroneControllerServer.readLine(),Position.class));
                 Platform.runLater(() ->
                 {
@@ -55,5 +57,9 @@ public class PlanungsSoftwareClient implements Runnable
         }
 
     }
+    public void setOutputStringToController(String outputStringToController)
+    {
+        this.outputStringToController = outputStringToController;
     }
+}
 
