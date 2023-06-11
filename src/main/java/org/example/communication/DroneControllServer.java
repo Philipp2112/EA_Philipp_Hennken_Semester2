@@ -76,19 +76,17 @@ public class DroneControllServer implements Runnable
             // Folgender Prozess wird wiederholt:
             while(true)
             {
-                System.out.println(drone.getPosition().getX());
                 // Sobald ein Client ein Socket oeffnet, wird dieses sofort akzeptiert
                 client = serverSocket.accept();
 
                 // Es wird ein PrintWriter zum OutputStreams des Clients geoeffnet
                 printWriter = new PrintWriter(client.getOutputStream(), true);
 
-                // Diese sendet alle Daten des Beispiel-Cars ueber die Methode "toJSON"
+                // Diese sendet alle Daten der Drohne ueber die Methode "toJSON"
                 printWriter.println(gson.toJson(drone.getPosition()).toString());
 
                 bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 drone.setMovement(bufferedReader.readLine());
-                System.out.println(drone.getMovement());
 
 
                 // Danach wird der PrintWriter und das Socket zum Client wieder geschlossen

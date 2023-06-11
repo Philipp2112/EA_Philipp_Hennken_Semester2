@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import org.example.model.Drone;
 import org.example.model.DroneController;
 import org.example.model.Position;
+import org.example.model.Velocity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,12 +37,14 @@ public class PlanungsSoftwareClient implements Runnable
                 outToDroneController = new PrintWriter(clientSocket.getOutputStream(), true);
                 outToDroneController.println(PlanungssoftwareDelegate.getCommandToController());
                 drone.setPosition(gson.fromJson(inFromDroneControllerServer.readLine(),Position.class));
+                drone.setVelocity(new Velocity(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ())));
+                drone.setPreviousPosition(drone.getPosition());
                 Platform.runLater(() ->
                 {
-                    DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
-                    DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
-                    DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
-                    DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX()-drone.getPosition().getZ());
+                    DroneController.getClassInstance().getXKoordinateProperty().setValue(drone.getPosition().getX());
+                    DroneController.getClassInstance().getYKoordinateProperty().setValue(drone.getPosition().getY());
+                    DroneController.getClassInstance().getZKoordinateProperty().setValue(drone.getPosition().getZ());
+                    DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getVelocity());
                 });
                 Thread.sleep(1000);
             }

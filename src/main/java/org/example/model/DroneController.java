@@ -77,6 +77,15 @@ public class DroneController
         });
     }
 
+    public static double calculateSpeed(double currentX, double currentY, double currentZ, double prevX, double prevY, double prevZ) {
+        double deltaX = currentX - prevX;
+        double deltaY = currentY - prevY;
+        double deltaZ = currentZ - prevZ;
+
+        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+
+        return distance;
+    }
 
 
 
@@ -86,19 +95,19 @@ public class DroneController
     }
 
 
-    public DoubleProperty xKoordinateProperty()
+    public DoubleProperty getXKoordinateProperty()
     {
         return xKoordinateProperty;
     }
 
 
-    public DoubleProperty yKoordinateProperty()
+    public DoubleProperty getYKoordinateProperty()
     {
         return yKoordinateProperty;
     }
 
 
-    public DoubleProperty zKoordinateProperty()
+    public DoubleProperty getZKoordinateProperty()
     {
         return zKoordinateProperty;
     }

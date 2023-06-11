@@ -5,11 +5,10 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 public class Drone
 {
     private Battery battery;
-    private Thrust thrust;
     private Orientation orientation;
     private Velocity velocity = new Velocity(0.0);
     private Position position;
-    private Position previousPosition;
+    private Position previousPosition = new Position(-122,50,500);
     private String movement;
 
     public Drone(Position position)
@@ -18,13 +17,13 @@ public class Drone
     }
 
 
-    public Number calculateVelocity()
+    /*public Number calculateVelocity()
     {
         Vector3D velocityVector = new Vector3D(getPosition().getX() - getPreviousPosition().getX(), 0 , getPosition().getZ() - getPreviousPosition().getZ());
         this.velocity = new Velocity(velocityVector.getY());
         //velocityVector.scalarMultiply(1/MeineKonstanten.GET_DATA_SLEEP);
         return velocityVector.getX();
-    }
+    }*/
 
     public Orientation getOrientation()
     {
@@ -46,15 +45,6 @@ public class Drone
         this.previousPosition = previousPosition;
     }
 
-    public Thrust getThrust()
-    {
-        return thrust;
-    }
-
-    public void setThrust(Thrust thrust)
-    {
-        this.thrust = thrust;
-    }
 
     public Number getVelocity()
     {

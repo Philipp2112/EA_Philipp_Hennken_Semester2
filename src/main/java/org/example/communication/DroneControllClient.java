@@ -1,6 +1,5 @@
 package org.example.communication;
 import com.google.gson.Gson;
-import org.example.client.Kommandos;
 import org.example.client.MeineKonstanten;
 import org.example.client.Strings;
 import org.example.model.*;
@@ -25,11 +24,15 @@ public class DroneControllClient implements Runnable
         while (true)
         {
             drone.setPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, gsonObject.toJson(drone.getMovement())),Position.class));
-            DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX());
-            drone.setPreviousPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, gsonObject.toJson(drone.getMovement())),Position.class));
-            DroneController.getClassInstance().xKoordinateProperty().setValue(drone.getPosition().getX());
-            DroneController.getClassInstance().yKoordinateProperty().setValue(drone.getPosition().getY());
-            DroneController.getClassInstance().zKoordinateProperty().setValue(drone.getPosition().getZ());
+            // DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX());
+            //drone.setVelocity(new Velocity(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ())));
+            //System.out.println(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ()));
+            //System.out.println(drone.getVelocity());
+            //drone.setPreviousPosition(drone.getPosition());
+            /*DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getVelocity());
+            DroneController.getClassInstance().getXKoordinateProperty().setValue(drone.getPosition().getX());
+            DroneController.getClassInstance().getYKoordinateProperty().setValue(drone.getPosition().getY());
+            DroneController.getClassInstance().getZKoordinateProperty().setValue(drone.getPosition().getZ());*/
             System.out.println(drone.getPosition().toString());
             System.out.println(drone.getMovement());
             sleep(MeineKonstanten.GET_DATA_SLEEP);
