@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.communication.DroneControllerMain;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,6 +22,7 @@ public class Planungssoftware extends Application
 
     public static void main(String[] args) throws IOException
     {
+        DroneControllerMain.main(null);
         PlanungsSoftwareClient planungsSoftwareClient = new PlanungsSoftwareClient();
         Thread planungsThread = new Thread(planungsSoftwareClient);
         planungsThread.start();

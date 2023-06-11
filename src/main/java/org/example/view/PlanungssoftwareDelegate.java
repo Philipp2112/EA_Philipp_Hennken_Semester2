@@ -6,6 +6,8 @@ import javafx.util.converter.NumberStringConverter;
 import org.example.model.DroneController;
 import javafx.beans.binding.Bindings;
 
+import java.io.IOException;
+
 
 public class PlanungssoftwareDelegate
 {
@@ -73,5 +75,19 @@ public class PlanungssoftwareDelegate
     public static String getCommandToController()
     {
         return commandToController;
+    }
+
+    public void openMainMenu()
+    {
+    }
+
+    public void startServer() throws IOException
+    {
+
+    }
+
+    public void stopServer()
+    {
+        System.exit(32);
     }
 }

@@ -3,68 +3,73 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.PlanungssoftwareDelegate">
-   <children>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Button layoutX="12.0" layoutY="240.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Fliegen" />
-            <Button layoutX="12.0" layoutY="159.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Planung" />
-            <Button layoutX="14.0" layoutY="79.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="73.0" text="Home" />
-         </children></Pane>
-      <Pane prefHeight="400.0" prefWidth="443.0">
-         <children>
-            <VBox layoutX="72.0" layoutY="59.0" prefHeight="214.0" prefWidth="165.0">
-               <children>
+<?import com.sun.javafx.scene.control.ContextMenuContent.ArrowMenuItem?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.PlanungssoftwareDelegate">
 
-               </children>
-            </VBox>
+        <top>
+        <MenuBar prefHeight="33.0" prefWidth="605.0">
+            <Menu text="Hauptmenü" onAction="#openMainMenu">
+            </Menu>
+            <Menu text="Server">
+                <MenuItem text="Starten" onAction="#startServer"/>
+                <MenuItem text="Stoppen" onAction="#stopServer"/>
+            </Menu>
+        </MenuBar>
 
-         </children>
-      </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+        </top>
+
+         <center>
+            <Pane prefHeight="400.0" prefWidth="775.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <GridPane layoutX="219.0" layoutY="200.0" prefHeight="168.0" prefWidth="168.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="75.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="75.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="69.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
-                        <Label fx:id="anzeigeGeschwindigkeit" prefHeight="39.0" prefWidth="119.0" />
-                        <Label prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
-                        <Label fx:id="anzeigeX" prefHeight="39.0" prefWidth="119.0" />
-                        <Label prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
-                        <Label fx:id="anzeigeY" prefHeight="39.0" prefWidth="119.0" />
-                        <Label prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
-                        <Label fx:id="anzeigeZ" prefHeight="39.0" prefWidth="119.0" />
+                        <Button mnemonicParsing="false" onAction="#onSendWClick" prefHeight="49.0" prefWidth="59.0" text="W" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#onSendAClick" prefHeight="49.0" prefWidth="73.0" text="A" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#onSendDClick" prefHeight="49.0" prefWidth="73.0" text="D" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#onSendSClick" prefHeight="49.0" prefWidth="73.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#onSendStopClick" prefHeight="49.0" prefWidth="73.0" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#onSendUpClick" prefHeight="49.0" prefWidth="73.0" text="UP" />
+                        <Button mnemonicParsing="false" onAction="#onSendDownClick" prefHeight="49.0" prefWidth="73.0" text="Down" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#onSendTurnLeftClick" prefHeight="49.0" prefWidth="73.0" text="TL" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#onSendTurnRightClick" prefHeight="49.0" prefWidth="73.0" text="TR" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                      </children>
-                  </VBox>
-
+                  </GridPane>
+                  <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="21.0" prefHeight="28.0" prefWidth="292.0">
+                     <items>
+                              <Label prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
+                              <Label fx:id="anzeigeGeschwindigkeit" prefHeight="26.0" prefWidth="188.0" />
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="59.0" prefHeight="28.0" prefWidth="292.0">
+                     <items>
+                              <Label prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
+                              <Label fx:id="anzeigeX" prefHeight="26.0" prefWidth="186.0" />
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="96.0" prefHeight="28.0" prefWidth="292.0">
+                     <items>
+                              <Label prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
+                              <Label fx:id="anzeigeY" prefHeight="26.0" prefWidth="188.0" />
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="134.0" prefHeight="28.0" prefWidth="292.0">
+                     <items>
+                              <Label prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
+                              <Label fx:id="anzeigeZ" prefHeight="26.0" prefWidth="189.0" />
+                     </items>
+                  </SplitPane>
+      
                </children>
-            </VBox>
-            <GridPane layoutX="4.0" layoutY="213.0" prefHeight="171.0" prefWidth="150.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="75.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="75.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="69.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onSendWClick" prefHeight="49.0" prefWidth="73.0" text="W" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#onSendAClick" prefHeight="49.0" prefWidth="73.0" text="A" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#onSendDClick" prefHeight="49.0" prefWidth="73.0" text="D" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#onSendSClick" prefHeight="49.0" prefWidth="73.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#onSendStopClick" prefHeight="49.0" prefWidth="73.0" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#onSendUpClick" prefHeight="49.0" prefWidth="73.0" text="UP" />
-                  <Button mnemonicParsing="false" onAction="#onSendDownClick" prefHeight="49.0" prefWidth="73.0" text="Down" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#onSendTurnLeftClick" prefHeight="49.0" prefWidth="73.0" text="TL" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#onSendTurnRightClick" prefHeight="49.0" prefWidth="73.0" text="TR" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
-
-         </children>
-      </Pane>
-   </children>
-</HBox>
+            </Pane>
+         </center>
+      </BorderPane>
