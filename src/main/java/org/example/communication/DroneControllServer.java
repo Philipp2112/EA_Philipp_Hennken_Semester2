@@ -87,7 +87,8 @@ public class DroneControllServer implements Runnable
                 printWriter.println(gson.toJson(drone.getPosition()).toString());
 
                 bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                System.out.println(bufferedReader.readLine());
+                drone.setMovement(bufferedReader.readLine());
+                System.out.println(drone.getMovement());
 
 
                 // Danach wird der PrintWriter und das Socket zum Client wieder geschlossen

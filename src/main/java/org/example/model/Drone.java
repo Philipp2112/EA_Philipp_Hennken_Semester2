@@ -10,6 +10,7 @@ public class Drone
     private Velocity velocity = new Velocity(0.0);
     private Position position;
     private Position previousPosition;
+    private String movement;
 
     public Drone(Position position)
     {
@@ -75,4 +76,13 @@ public class Drone
         this.position = position;
     }
 
+    public String getMovement()
+    {
+        return movement;
+    }
+
+    public void setMovement(String movement)
+    {
+        this.movement = movement;
+    }
 }

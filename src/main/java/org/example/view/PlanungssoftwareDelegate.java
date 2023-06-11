@@ -38,7 +38,7 @@ public class PlanungssoftwareDelegate
 
     public void onSendDClick()
     {
-        commandToController = "D";
+        commandToController = "X";
     }
 
     public void onSendSClick()
