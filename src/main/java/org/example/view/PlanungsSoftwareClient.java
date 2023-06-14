@@ -2,6 +2,7 @@ package org.example.view;
 
 import com.google.gson.Gson;
 import javafx.application.Platform;
+import org.example.client.MeineKonstanten;
 import org.example.model.Drone;
 import org.example.model.DroneController;
 import org.example.model.Position;
@@ -33,9 +34,9 @@ public class PlanungsSoftwareClient implements Runnable
             {
                 Socket clientSocket = new Socket("localhost", 55555);
                 inFromDroneControllerServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                System.out.println(PlanungssoftwareDelegate.getCommandToController());
+                //System.out.println(FreeFlightDelegate.getCommandToController());
                 outToDroneController = new PrintWriter(clientSocket.getOutputStream(), true);
-                outToDroneController.println(PlanungssoftwareDelegate.getCommandToController());
+                outToDroneController.println(FreeFlightDelegate.getCommandToController());
                 drone.setPosition(gson.fromJson(inFromDroneControllerServer.readLine(),Position.class));
                 drone.setVelocity(new Velocity(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ())));
                 drone.setPreviousPosition(drone.getPosition());
@@ -46,7 +47,7 @@ public class PlanungsSoftwareClient implements Runnable
                     DroneController.getClassInstance().getZKoordinateProperty().setValue(drone.getPosition().getZ());
                     DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getVelocity());
                 });
-                Thread.sleep(1000);
+                Thread.sleep(MeineKonstanten.GET_DATA_SLEEP);
             }
         } catch(UnknownHostException e)
             {

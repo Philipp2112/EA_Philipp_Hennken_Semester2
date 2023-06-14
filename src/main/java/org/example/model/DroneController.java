@@ -3,6 +3,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import org.example.client.MeineKonstanten;
 
 public class DroneController
 {
@@ -77,19 +78,17 @@ public class DroneController
         });
     }
 
-    public static double calculateSpeed(double currentX, double currentY, double currentZ, double prevX, double prevY, double prevZ) {
+    public synchronized static double calculateSpeed(double currentX, double currentY, double currentZ, double prevX, double prevY, double prevZ) {
         double deltaX = currentX - prevX;
         double deltaY = currentY - prevY;
         double deltaZ = currentZ - prevZ;
 
-        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-
-        return distance;
+        return Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)/ MeineKonstanten.milliSecondToSecond);
     }
 
 
 
-    public DoubleProperty getGeschwindigkeitsProperty()
+    public synchronized DoubleProperty getGeschwindigkeitsProperty()
     {
         return geschwindigkeitsProperty;
     }

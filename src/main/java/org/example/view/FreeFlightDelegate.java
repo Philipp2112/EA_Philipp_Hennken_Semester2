@@ -9,7 +9,7 @@ import javafx.beans.binding.Bindings;
 import java.io.IOException;
 
 
-public class PlanungssoftwareDelegate
+public class FreeFlightDelegate
 {
     private static String commandToController = "notMoving";
     public Label anzeigeX;

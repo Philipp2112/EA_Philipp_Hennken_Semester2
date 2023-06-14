@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.view.FreeFlightDelegate"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <Pane prefHeight="400.0" prefWidth="775.0" BorderPane.alignment="CENTER">
+        <children>
+            <GridPane layoutX="219.0" layoutY="200.0" prefHeight="168.0" prefWidth="168.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="81.0" minWidth="10.0" prefWidth="75.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="75.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.0" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="69.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Button mnemonicParsing="false" onAction="#onSendWClick" prefHeight="49.0" prefWidth="59.0" text="W" GridPane.columnIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#onSendAClick" prefHeight="49.0" prefWidth="73.0" text="A" GridPane.rowIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#onSendDClick" prefHeight="49.0" prefWidth="73.0" text="D" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#onSendSClick" prefHeight="49.0" prefWidth="73.0" text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Button mnemonicParsing="false" onAction="#onSendStopClick" prefHeight="49.0" prefWidth="73.0" text="STOP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#onSendUpClick" prefHeight="49.0" prefWidth="73.0" text="UP" />
+                    <Button mnemonicParsing="false" onAction="#onSendDownClick" prefHeight="49.0" prefWidth="73.0" text="Down" GridPane.columnIndex="2" />
+                    <Button mnemonicParsing="false" onAction="#onSendTurnLeftClick" prefHeight="49.0" prefWidth="73.0" text="TL" GridPane.rowIndex="2" />
+                    <Button mnemonicParsing="false" onAction="#onSendTurnRightClick" prefHeight="49.0" prefWidth="73.0" text="TR" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                </children>
+            </GridPane>
+            <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="21.0" prefHeight="28.0" prefWidth="292.0">
+                <items>
+                    <Label prefHeight="28.0" prefWidth="94.0" text="Geschwindigkeit" />
+                    <Label fx:id="anzeigeGeschwindigkeit" prefHeight="26.0" prefWidth="188.0" />
+                </items>
+            </SplitPane>
+            <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="59.0" prefHeight="28.0" prefWidth="292.0">
+                <items>
+                    <Label prefHeight="28.0" prefWidth="94.0" text="xKoordinate" />
+                    <Label fx:id="anzeigeX" prefHeight="26.0" prefWidth="186.0" />
+                </items>
+            </SplitPane>
+            <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="96.0" prefHeight="28.0" prefWidth="292.0">
+                <items>
+                    <Label prefHeight="28.0" prefWidth="94.0" text="yKoordinate" />
+                    <Label fx:id="anzeigeY" prefHeight="26.0" prefWidth="188.0" />
+                </items>
+            </SplitPane>
+            <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="134.0" prefHeight="28.0" prefWidth="292.0">
+                <items>
+                    <Label prefHeight="28.0" prefWidth="94.0" text="zKoordinate" />
+                    <Label fx:id="anzeigeZ" prefHeight="26.0" prefWidth="189.0" />
+                </items>
+            </SplitPane>
+
+        </children>
+    </Pane>
+</AnchorPane>
