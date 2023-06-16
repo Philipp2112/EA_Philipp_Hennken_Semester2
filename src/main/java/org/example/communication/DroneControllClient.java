@@ -1,6 +1,6 @@
 package org.example.communication;
 import com.google.gson.Gson;
-import org.example.client.MeineKonstanten;
+import org.example.client.Constants;
 import org.example.client.Strings;
 import org.example.model.*;
 
@@ -18,24 +18,13 @@ public class DroneControllClient implements Runnable
 
     public void run()
     {
-        socket = verbindungAufbauen("127.0.0.1", 10666);
+        socket = verbindungAufbauen(Strings.LOCALHOST, 10666);
         Gson gsonObject = new Gson();
 
         while (true)
         {
-            drone.setPosition(gsonObject.fromJson(sendeKommandoUndWarteAufAntwort(socket, gsonObject.toJson(drone.getMovement())),Position.class));
-            // DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getPosition().getX());
-            //drone.setVelocity(new Velocity(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ())));
-            //System.out.println(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ()));
-            //System.out.println(drone.getVelocity());
-            //drone.setPreviousPosition(drone.getPosition());
-            /*DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getVelocity());
-            DroneController.getClassInstance().getXKoordinateProperty().setValue(drone.getPosition().getX());
-            DroneController.getClassInstance().getYKoordinateProperty().setValue(drone.getPosition().getY());
-            DroneController.getClassInstance().getZKoordinateProperty().setValue(drone.getPosition().getZ());*/
-            System.out.println(drone.getPosition().toString());
-            System.out.println(drone.getMovement());
-            sleep(MeineKonstanten.GET_DATA_SLEEP);
+            drone.setPosition(gsonObject.fromJson(sendCommandAndWaitForAnswer(socket, gsonObject.toJson(drone.getMovement())),Position.class));
+            sleep(Constants.GET_DATA_SLEEP);
         }
 
     }
@@ -54,7 +43,7 @@ public class DroneControllClient implements Runnable
         }
     }
 
-    private String sendeKommandoUndWarteAufAntwort(Socket socket, String command)
+    private String sendCommandAndWaitForAnswer(Socket socket, String command)
     {
         PrintWriter outToUnity = null;
         BufferedReader inFromUnity = null;

@@ -5,30 +5,29 @@ import org.example.control.Timer;
 
 public class Battery extends Actuator
 {
-    private int batteryLevel;
-    //capacity of the battery in mAh
-    private int batteryCapacity = 3000;
-    private int chargeLevel = 3000;
+    private double chargeLevel;
 
+    public Battery(double chargeLevel)
+    {
+        Timer.start();
+        this.chargeLevel = chargeLevel;
+        calculateActuatorData();
+    }
 
     @Override
-    public Object calculateActuatorData()
+    public void calculateActuatorData()
     {
-        batteryLevel = calculateBatteryLevel(chargeLevel);
-        return batteryLevel;
+            chargeLevel = chargeLevel - 0.000005;
+            //TODO korrekten Wert finden
     }
 
-    private int calculateBatteryLevel(int stateOfCharge)
+    public double getChargeLevel()
     {
-        return stateOfCharge - calculateTimeInAir();
-    }
-    private int calculateTimeInAir()
-    {
-        return Timer.calculatePassedMinutesSinceLastMethodCall();
+        return chargeLevel;
     }
 
-    public int getBatteryLevel()
+    public void setChargeLevel(double chargeLevel)
     {
-        return batteryLevel;
+        this.chargeLevel = chargeLevel;
     }
 }

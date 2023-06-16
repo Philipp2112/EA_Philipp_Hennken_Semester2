@@ -3,7 +3,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import org.example.client.MeineKonstanten;
+import org.example.client.Constants;
 
 public class DroneController
 {
@@ -24,6 +24,7 @@ public class DroneController
     private DoubleProperty xKoordinateProperty;
     private DoubleProperty yKoordinateProperty;
     private DoubleProperty zKoordinateProperty;
+    private DoubleProperty chargeLevelProperty;
 
     private DroneController()
     {
@@ -32,6 +33,7 @@ public class DroneController
         this.xKoordinateProperty = new SimpleDoubleProperty();
         this.yKoordinateProperty = new SimpleDoubleProperty();
         this.zKoordinateProperty = new SimpleDoubleProperty();
+        this.chargeLevelProperty = new SimpleDoubleProperty();
         propertyListeners();
     }
 
@@ -43,9 +45,18 @@ public class DroneController
             public void changed(ObservableValue<? extends Number> observableValue, Number alteGeschwindigkeit, Number neueGeschwindigkeit)
             {
                 drone.setVelocity(new Velocity((Double) neueGeschwindigkeit));
-                System.out.println("Geschwindigkeit hat sich geändert!!!");
             }
         });
+
+        this.chargeLevelProperty.addListener(new ChangeListener<Number>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldChargeLevel, Number updatedChargeLevel)
+            {
+                drone.setBattery(new Battery((Double) updatedChargeLevel));
+            }
+        });
+
 
         this.xKoordinateProperty.addListener(new ChangeListener<Number>()
         {
@@ -53,7 +64,6 @@ public class DroneController
             public void changed(ObservableValue<? extends Number> observableValue, Number alteXKoordinate, Number neueXKoordinate)
             {
                 drone.getPosition().setX((Double) neueXKoordinate);
-                System.out.println("change X Property");
             }
         });
 
@@ -63,7 +73,6 @@ public class DroneController
             public void changed(ObservableValue<? extends Number> observableValue, Number alteYKoordinate, Number neueYKoordinate)
             {
                 drone.getPosition().setY((Double) neueYKoordinate);
-                System.out.println("changed y");
             }
         });
 
@@ -73,7 +82,6 @@ public class DroneController
             public void changed(ObservableValue<? extends Number> observableValue, Number alteZKoordinate, Number neueZKoordinate)
             {
                 drone.getPosition().setZ((Double) neueZKoordinate);
-                System.out.println("change z");
             }
         });
     }
@@ -83,7 +91,7 @@ public class DroneController
         double deltaY = currentY - prevY;
         double deltaZ = currentZ - prevZ;
 
-        return Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)/ MeineKonstanten.milliSecondToSecond);
+        return Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)/ Constants.milliSecondToSecond);
     }
 
 
@@ -110,6 +118,12 @@ public class DroneController
     {
         return zKoordinateProperty;
     }
+
+    public DoubleProperty getChargeLevelProperty()
+    {
+        return chargeLevelProperty;
+    }
+
 
     public Drone getDrone()
     {

@@ -20,7 +20,7 @@
         <tabs>
           <Tab text="Planung">
             <content>
-               <fx:include source="planning.fxml"/>
+               <fx:include source="planning.fxml" />
             </content>
           </Tab>
           <Tab text="Flug">

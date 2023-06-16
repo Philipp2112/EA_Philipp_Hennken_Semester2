@@ -1,5 +1,7 @@
 package org.example.control;
 
+import org.example.client.Constants;
+
 /**             In dieser Klasse wird die Zeitmessung der einzelnen Methoden gesteuert.
  * @author      Philipp Hennken
  * @version     18.0.2
@@ -19,7 +21,7 @@ public class Timer
 
     public static int calculatePassedMinutesSinceLastMethodCall()
     {
-        long a = (System.nanoTime() - startTime) / 1_000_000_000;
+        long a = (System.nanoTime() - startTime) / Constants.NANO_TO_MILLI;
         return (int) (a);
     }
 }

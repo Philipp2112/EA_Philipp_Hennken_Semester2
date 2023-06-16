@@ -1,6 +1,8 @@
 package org.example.communication;
 
 import com.google.gson.Gson;
+import org.example.client.Constants;
+import org.example.client.Strings;
 import org.example.model.Drone;
 import org.example.model.Position;
 
@@ -57,7 +59,7 @@ public class DroneControllServer implements Runnable
         try
         {
             // Aus dem gespeicherten Port wird ein ServerSocket erstellt
-            serverSocket = new ServerSocket(55555);
+            serverSocket = new ServerSocket(Constants.PORT_CONTROLLER_PLANNING);
         }
         catch (IOException e)
         {
@@ -72,7 +74,7 @@ public class DroneControllServer implements Runnable
         Gson gson = new Gson();
         try
         {
-            System.out.println("Server läuft");
+            System.out.println(Strings.SERVER_IS_RUNNING);
             // Folgender Prozess wird wiederholt:
             while(true)
             {

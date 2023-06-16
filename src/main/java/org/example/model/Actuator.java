@@ -4,7 +4,7 @@ public abstract class Actuator
 {
     Object ActuatorData;
 
-    public abstract Object calculateActuatorData();
+    public abstract void calculateActuatorData();
 
     public Object getActuatorData()
     {

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.Planning">
+<Pane prefHeight="400.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.Planning">
    <children>
       <TextField layoutX="53.0" layoutY="70.0" promptText="xKoordinate" fx:id="xCoordinateEntry" />
       <TextField fx:id="yCoordinateEntry" layoutX="53.0" layoutY="113.0" promptText="yKoordinate" />
@@ -11,12 +11,14 @@
       <Button layoutX="53.0" layoutY="194.0" mnemonicParsing="false" onAction="#onAddCoordinatesClick" prefHeight="25.0" prefWidth="149.0" text="Füge Koordinate hinzu" />
       <Label fx:id="infoLabel" layoutX="315.0" layoutY="40.0" prefHeight="46.0" prefWidth="202.0" />
       <Button layoutX="53.0" layoutY="294.0" mnemonicParsing="false" onAction="#onFlyToCoordinatesClick" prefHeight="69.0" prefWidth="109.0" text="Fliege Weg ab" />
+       <ProgressBar fx:id="chargeLevelProgressBar" layoutX="570.0" layoutY="21.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="168.0" progress="0.0" />
+       <Label fx:id="chargeLevelLabel" text="Label" layoutX="570.0" layoutY="40" prefHeight="28.0" prefWidth="68.0"/>
       <TableView fx:id="tableWithCoordinates" layoutX="315.0" layoutY="87.0" prefHeight="302.0" prefWidth="202.0">
         <columns>
-          <TableColumn prefWidth="50.0" text="x" fx:id="xCoordinateTableColumn"/>
-          <TableColumn prefWidth="50.0" text="y" fx:id="yCoordinateTableColumn"/>
-            <TableColumn prefWidth="50.0" text="z" fx:id="zCoordinateTableColumn"/>
-            <TableColumn prefWidth="50.0" text="distanceToGround" fx:id="dtgCoordinateTableColumn"/>
+          <TableColumn prefWidth="50.0" text="x" fx:id="xCoordinateTableColumn" />
+          <TableColumn fx:id="yCoordinateTableColumn" prefWidth="50.0" text="y" />
+            <TableColumn fx:id="zCoordinateTableColumn" prefWidth="50.0" text="z" />
+            <TableColumn fx:id="dtgCoordinateTableColumn" prefWidth="50.0" text="distanceToGround" />
         </columns>
       </TableView>
       <Button layoutX="53.0" layoutY="238.0" mnemonicParsing="false" onAction="#deleteLastCoordinate" prefHeight="25.0" prefWidth="149.0" text="Lösche letzte Koordinate" />

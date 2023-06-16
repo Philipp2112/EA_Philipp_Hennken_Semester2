@@ -48,24 +48,6 @@ public class Position
         this.z = z;
     }
 
-   /* public Vector3D getPositionVector()
-    {
-        return positionVector;
-    }
-
-    public void setPositionVector(Vector3D positionVector)
-    {
-        this.positionVector = positionVector;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Position{\n" +
-                positionVector.getX() + "\n"  + positionVector.getY() + "\n" + positionVector.getZ() +
-                "}\n\n";
-    }*/
-
     @Override
     public String toString()
     {

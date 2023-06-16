@@ -1,8 +1,11 @@
 package org.example.view;
 
+import javafx.beans.binding.Binding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.util.converter.NumberStringConverter;
+import org.example.client.Strings;
 import org.example.model.DroneController;
 import javafx.beans.binding.Bindings;
 
@@ -11,70 +14,79 @@ import java.io.IOException;
 
 public class FreeFlightDelegate
 {
-    private static String commandToController = "notMoving";
+    private static String commandToController = Strings.NOT_MOVING;
     public Label anzeigeX;
     public Label anzeigeY;
     public Label anzeigeZ;
     public Label anzeigeGeschwindigkeit;
+    public ProgressBar chargeLevel;
+    public Label chargeLevelLabel;
 
     @FXML
     private void initialize()
     {
-        System.out.println("binding wird gemacht");
         Bindings.bindBidirectional(anzeigeX.textProperty(), DroneController.getClassInstance().getXKoordinateProperty(), new NumberStringConverter());
         Bindings.bindBidirectional(anzeigeY.textProperty(), DroneController.getClassInstance().getYKoordinateProperty(), new NumberStringConverter());
         Bindings.bindBidirectional(anzeigeZ.textProperty(), DroneController.getClassInstance().getZKoordinateProperty(), new NumberStringConverter());
         Bindings.bindBidirectional(anzeigeGeschwindigkeit.textProperty(), DroneController.getClassInstance().getGeschwindigkeitsProperty(), new NumberStringConverter());
+        Bindings.bindBidirectional(chargeLevel.progressProperty(), DroneController.getClassInstance().getChargeLevelProperty());
+        Bindings.bindBidirectional(chargeLevelLabel.textProperty(), DroneController.getClassInstance().getChargeLevelProperty(), new NumberStringConverter());
     }
 
     public void onSendWClick()
     {
-        commandToController = "W";
+        commandToController = Strings.W;
     }
 
     public void onSendAClick()
     {
-        commandToController = "A";
+        commandToController = Strings.A;
     }
 
     public void onSendDClick()
     {
-        commandToController = "X";
+        commandToController = Strings.D;
     }
 
     public void onSendSClick()
     {
-        commandToController = "S";
+        commandToController = Strings.S;
     }
 
     public void onSendStopClick()
     {
-        commandToController = "notMoving";
+        commandToController = Strings.NOT_MOVING;
+        System.out.println(chargeLevel.getProgress());
     }
 
     public void onSendUpClick()
     {
-        commandToController = "Up";
+        commandToController = Strings.UP;
     }
 
     public void onSendDownClick()
     {
-        commandToController = "Down";
+        commandToController = Strings.DOWN;
     }
 
     public void onSendTurnLeftClick()
     {
-        commandToController = "TurnLeft";
+        commandToController = Strings.TURN_LEFT;
     }
 
     public void onSendTurnRightClick()
     {
-        commandToController = "TurnRight";
+        commandToController = Strings.TURN_RIGHT;
     }
 
     public static String getCommandToController()
     {
         return commandToController;
+    }
+
+    public static void setCommandToController(String command)
+    {
+        commandToController = command;
     }
 
     public void openMainMenu()

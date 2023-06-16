@@ -2,11 +2,9 @@ package org.example.view;
 
 import com.google.gson.Gson;
 import javafx.application.Platform;
-import org.example.client.MeineKonstanten;
-import org.example.model.Drone;
-import org.example.model.DroneController;
-import org.example.model.Position;
-import org.example.model.Velocity;
+import org.example.client.Constants;
+import org.example.client.Strings;
+import org.example.model.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +21,6 @@ public class PlanungsSoftwareClient implements Runnable
     @Override
     public void run()
     {
-        System.out.println("qwwefdq");
         try
         {
             Gson gson = new Gson();
@@ -32,12 +29,12 @@ public class PlanungsSoftwareClient implements Runnable
             int i = 0;
             while (true)
             {
-                Socket clientSocket = new Socket("localhost", 55555);
+                Socket clientSocket = new Socket(Strings.LOCALHOST, Constants.PORT_CONTROLLER_PLANNING);
                 inFromDroneControllerServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                //System.out.println(FreeFlightDelegate.getCommandToController());
                 outToDroneController = new PrintWriter(clientSocket.getOutputStream(), true);
                 outToDroneController.println(FreeFlightDelegate.getCommandToController());
                 drone.setPosition(gson.fromJson(inFromDroneControllerServer.readLine(),Position.class));
+                drone.getBattery().calculateActuatorData();
                 drone.setVelocity(new Velocity(DroneController.calculateSpeed(drone.getPosition().getX(), drone.getPosition().getY(), drone.getPosition().getZ(), drone.getPreviousPosition().getX(), drone.getPreviousPosition().getY(), drone.getPreviousPosition().getZ())));
                 drone.setPreviousPosition(drone.getPosition());
                 Platform.runLater(() ->
@@ -46,8 +43,9 @@ public class PlanungsSoftwareClient implements Runnable
                     DroneController.getClassInstance().getYKoordinateProperty().setValue(drone.getPosition().getY());
                     DroneController.getClassInstance().getZKoordinateProperty().setValue(drone.getPosition().getZ());
                     DroneController.getClassInstance().getGeschwindigkeitsProperty().setValue(drone.getVelocity());
+                    DroneController.getClassInstance().getChargeLevelProperty().setValue(drone.getBattery().getChargeLevel());
                 });
-                Thread.sleep(MeineKonstanten.GET_DATA_SLEEP);
+                Thread.sleep(Constants.GET_DATA_SLEEP);
             }
         } catch(UnknownHostException e)
             {
