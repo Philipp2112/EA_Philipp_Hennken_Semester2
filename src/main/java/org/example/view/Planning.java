@@ -26,7 +26,7 @@ public class Planning
     public TableColumn<Position, Double> dtgCoordinateTableColumn;
     public ProgressBar chargeLevelProgressBar;
     public Label chargeLevelLabel;
-    ObservableList<Position> positions = FXCollections.observableArrayList();
+    private static ObservableList<Position> positions = FXCollections.observableArrayList();
 
     /**This Method is called when the FXML-File "planning.fxml" is loaded. It sets the ValueFactories for the table columns
      * and binds the Charge-Level-ProgressBar to it´s Property as well as the ChargeLevel-Label.
@@ -43,46 +43,8 @@ public class Planning
        Bindings.bindBidirectional(chargeLevelLabel.textProperty(), DroneController.getClassInstance().getChargeLevelProperty(), new NumberStringConverter());
     }
 
-    public void flyRoute() throws InterruptedException
-    {
-        for (Position position : positions)
-        {
-            double destinyX = position.getX();
-            double destinyY = position.getY();
-            double destinyZ = position.getZ();
-
-            flyToDestiny(destinyX, destinyY, destinyZ);
-        }
-    }
-
-    private void flyToDestiny(double destinyX, double destinyY, double destinyZ)
-    {
-            Platform.runLater(() ->
-            {
-
-            });
-
-    }
-
-    private void sendCommandForDuration(String command, int durationInMilliseconds) throws InterruptedException
-    {
-        Platform.runLater(() ->
-        {
-            for (int i = 0; i < durationInMilliseconds; i++)
-            {
-                FreeFlightDelegate.setCommandToController(command);
-                try
-                {
-                    wait(1);
-                } catch (InterruptedException e)
-                {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
 
 
-    }
     public void onAddCoordinatesClick()
     {
         try
@@ -98,8 +60,9 @@ public class Planning
 
     public void onFlyToCoordinatesClick() throws InterruptedException
     {
-        flyRoute();
-        System.out.println(positions);
+        PlannedFlight plannedFlight = new PlannedFlight();
+        Thread plannedFlightThread = new Thread(plannedFlight);
+        plannedFlightThread.start();
     }
 
     private String coordinateToString(Position position)
@@ -117,5 +80,10 @@ public class Planning
         {
             infoLabel.setText(Strings.NO_COORDINATES_TO_REMOVE);
         }
+    }
+
+    public static ObservableList<Position> getPositions()
+    {
+        return positions;
     }
 }
