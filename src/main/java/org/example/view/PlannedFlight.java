@@ -1,13 +1,18 @@
 package org.example.view;
 
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import org.example.client.Strings;
 import org.example.model.DroneController;
 import org.example.model.Position;
 
 public class PlannedFlight implements Runnable
 {
+
+    private DroneController droneController;
+
+    public PlannedFlight()
+    {
+       this.droneController = DroneController.getClassInstance();
+    }
 
     @Override
     public void run()
@@ -18,129 +23,81 @@ public class PlannedFlight implements Runnable
             double destinyY = position.getY();
             double destinyZ = position.getZ();
             flyToDestiny(destinyX,destinyY,destinyZ);
-        }
-        /*while(DroneController.getClassInstance().getYKoordinateProperty().getValue() <= 130)
-        {
-            FreeFlightDelegate.setCommandToController(Strings.UP);
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
-
-        if (DroneController.getClassInstance().getXKoordinateProperty().getValue() <= destinyX)
-        {
-            while (DroneController.getClassInstance().getXKoordinateProperty().getValue() <= destinyX - 7.5)
+            try
             {
-                FreeFlightDelegate.setCommandToController(Strings.D);
-            }
-        }
-        else
-        {
-            while (DroneController.getClassInstance().getXKoordinateProperty().getValue() >= destinyX + 7.5)
+                //TODO Konstante
+                Thread.sleep(5000);
+            } catch (InterruptedException e)
             {
-                FreeFlightDelegate.setCommandToController(Strings.A);
+                throw new RuntimeException(e);
             }
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
-
-        if (DroneController.getClassInstance().getZKoordinateProperty().getValue() <= destinyZ)
-        {
-            while (DroneController.getClassInstance().getZKoordinateProperty().getValue() <= destinyZ - 20)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.W);
-            }
-        }
-        else
-        {
-            while (DroneController.getClassInstance().getZKoordinateProperty().getValue() >= destinyZ + 20)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.S);
-            }
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
-
-        if (DroneController.getClassInstance().getYKoordinateProperty().getValue() <= destinyY)
-        {
-            while (DroneController.getClassInstance().getYKoordinateProperty().getValue() <= destinyY - 20.6)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.UP);
-            }
-        }
-        else
-        {
-            while (DroneController.getClassInstance().getYKoordinateProperty().getValue() >= destinyY + 20.6)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.DOWN);
-            }
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);*/
-
-    }
-    public void flyRoute(ObservableList<Position> positions)
-    {
-        for (Position position : positions)
-        {
-            double destinyX = position.getX();
-            double destinyY = position.getY();
-            double destinyZ = position.getZ();
-
-            flyToDestiny(destinyX,destinyY,destinyZ);
         }
     }
 
     private void flyToDestiny(double destinyX, double destinyY, double destinyZ)
     {
-        while(DroneController.getClassInstance().getYKoordinateProperty().getValue() <= 130)
-        {
-            FreeFlightDelegate.setCommandToController(Strings.UP);
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
+        //TODO Konstante
+        flyToYDestinyAndStop(130);
+        flyToXDestinyAndStop(destinyX);
+        flyToZDestinyAndStop(destinyZ);
+        flyToYDestinyAndStop(destinyY);
 
-        if (DroneController.getClassInstance().getXKoordinateProperty().getValue() <= destinyX)
-        {
-            while (DroneController.getClassInstance().getXKoordinateProperty().getValue() <= destinyX - 7.5)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.D);
-            }
-        }
-        else
-        {
-            while (DroneController.getClassInstance().getXKoordinateProperty().getValue() >= destinyX + 7.5)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.A);
-            }
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
+    }
 
-        if (DroneController.getClassInstance().getZKoordinateProperty().getValue() <= destinyZ)
-        {
-            while (DroneController.getClassInstance().getZKoordinateProperty().getValue() <= destinyZ - 20)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.W);
-            }
-        }
-        else
-        {
-            while (DroneController.getClassInstance().getZKoordinateProperty().getValue() >= destinyZ + 20)
-            {
-                FreeFlightDelegate.setCommandToController(Strings.S);
-            }
-        }
-        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
-
-        if (DroneController.getClassInstance().getYKoordinateProperty().getValue() <= destinyY)
-        {
-            while (DroneController.getClassInstance().getYKoordinateProperty().getValue() <= destinyY - 20.6)
+    private void flyToYDestinyAndStop(double destinyY)
+    {
+        if (droneController.getYKoordinateProperty().getValue() <= destinyY)
+        { //TODO Konstanten
+            while (droneController.getYKoordinateProperty().getValue() <= destinyY - 20.6)
             {
                 FreeFlightDelegate.setCommandToController(Strings.UP);
             }
         }
         else
         {
-            while (DroneController.getClassInstance().getYKoordinateProperty().getValue() >= destinyY + 20.6)
+            while (droneController.getYKoordinateProperty().getValue() >= destinyY + 20.6)
             {
                 FreeFlightDelegate.setCommandToController(Strings.DOWN);
             }
         }
         FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
+    }
 
+    private void flyToZDestinyAndStop(double destinyZ)
+    {
+        if (droneController.getZKoordinateProperty().getValue() <= destinyZ)
+        {
+            while (droneController.getZKoordinateProperty().getValue() <= destinyZ - 20)
+            {
+                FreeFlightDelegate.setCommandToController(Strings.W);
+            }
+        }
+        else
+        {
+            while (droneController.getZKoordinateProperty().getValue() >= destinyZ + 20)
+            {
+                FreeFlightDelegate.setCommandToController(Strings.S);
+            }
+        }
+        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
+    }
+
+    private void flyToXDestinyAndStop(double destinyX)
+    {
+        if (droneController.getXKoordinateProperty().getValue() <= destinyX)
+        {
+            while (droneController.getXKoordinateProperty().getValue() <= destinyX - 7.5)
+            {
+                FreeFlightDelegate.setCommandToController(Strings.D);
+            }
+        }
+        else
+        {
+            while (droneController.getXKoordinateProperty().getValue() >= destinyX + 7.5)
+            {
+                FreeFlightDelegate.setCommandToController(Strings.A);
+            }
+        }
+        FreeFlightDelegate.setCommandToController(Strings.NOT_MOVING);
     }
 }

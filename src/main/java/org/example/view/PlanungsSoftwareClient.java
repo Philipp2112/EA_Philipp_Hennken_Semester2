@@ -15,7 +15,6 @@ import java.net.UnknownHostException;
 
 public class PlanungsSoftwareClient implements Runnable
 {
-    private String outputStringToController;
     private Drone drone = new Drone(new Position(0,0,0));
 
     @Override
@@ -58,10 +57,6 @@ public class PlanungsSoftwareClient implements Runnable
             throw new RuntimeException(e);
         }
 
-    }
-    public void setOutputStringToController(String outputStringToController)
-    {
-        this.outputStringToController = outputStringToController;
     }
 }
 

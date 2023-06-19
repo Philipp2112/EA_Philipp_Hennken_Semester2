@@ -56,7 +56,6 @@ public class FreeFlightDelegate
     public void onSendStopClick()
     {
         commandToController = Strings.NOT_MOVING;
-        System.out.println(chargeLevel.getProgress());
     }
 
     public void onSendUpClick()

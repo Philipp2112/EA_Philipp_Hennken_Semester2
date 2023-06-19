@@ -17,7 +17,7 @@ public class Battery extends Actuator
     @Override
     public void calculateActuatorData()
     {
-            chargeLevel = chargeLevel - 0.000005;
+            chargeLevel = chargeLevel - 0.000002;
             //TODO korrekten Wert finden
     }
 

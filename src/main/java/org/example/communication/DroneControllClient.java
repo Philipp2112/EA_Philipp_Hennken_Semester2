@@ -56,7 +56,7 @@ public class DroneControllClient implements Runnable
             return inFromUnity.readLine();
         }
         catch (IOException e)
-        {
+        {//TODO was passiert beim neustart von unity?
             throw new RuntimeException(e);
         }
     }

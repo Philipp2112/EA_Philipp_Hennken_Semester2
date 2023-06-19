@@ -58,7 +58,7 @@ public class Planning
         }
     }
 
-    public void onFlyToCoordinatesClick() throws InterruptedException
+    public void onFlyToCoordinatesClick()
     {
         PlannedFlight plannedFlight = new PlannedFlight();
         Thread plannedFlightThread = new Thread(plannedFlight);
