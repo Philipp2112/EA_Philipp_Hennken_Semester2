@@ -11,22 +11,51 @@ import org.example.communication.DroneControllerMain;
 import java.io.File;
 import java.io.IOException;
 
+/**This class starts every party of the program.
+ * @author philipp.hennken
+ * @version 18.0.2
+ */
 public class MainFX extends Application
 {
 
 
-
+    /** This method is called when the programm is started.
+     * calls the runProgram-method.
+     * @param args Program arguments.
+     * @pre Unity has to be started to be able to connect properly.
+     * @post the GUI is started.
+     * @post The DroneControllerMain is started.
+     * @post The PlanningSoftware thread is started.
+     */
     public static void main(String[] args)
     {
-        DroneControllerMain.main(null);
-        PlanungsSoftwareClient planungsSoftwareClient = new PlanungsSoftwareClient();
-        Thread planungsThread = new Thread(planungsSoftwareClient);
-        planungsThread.start();
-        launch();
+        runProgram();
 
     }
 
+    /**It starts the DroneController and the Thread for the planning software.
+     * Additionally, it starts the GUI that is displayed to the user.
+     * @pre Unity has to be started to be able to connect properly.
+     * @post the GUI is started.
+     * @post The DroneControllerMain is started.
+     * @post The PlanningSoftware thread is started.
+     */
+    private static void runProgram()
+    {
+        DroneControllerMain.main(null);
+        PlanningSoftwareClient planningSoftwareClient = new PlanningSoftwareClient();
+        Thread planningThread = new Thread(planningSoftwareClient);
+        planningThread.start();
+        launch();
+    }
 
+    /**
+     * Starts the application by loading the main screen FXML file, creating a scene, and displaying it on the stage.
+     * @param stage The primary stage of the JavaFX application.
+     * @throws Exception If an exception occurs during the start of the application.
+     * @pre The application is launched.
+     * @post The main screen of the application is displayed on the stage.
+     */
     @Override
     public void start(Stage stage) throws Exception
     {

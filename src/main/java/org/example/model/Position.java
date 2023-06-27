@@ -1,5 +1,9 @@
 package org.example.model;
 
+/**This class keeps a position with its attributes.
+ * @author philipp.hennken
+ * @version 18.0.2
+ */
 public class Position
 {
     private double x;
@@ -8,6 +12,14 @@ public class Position
     private double y;
     private double z;
 
+    /** Creates a position object in a three-dimensional map.
+     * @param x The X coordinate.
+     * @param y The Y coordinate.
+     * @param z The Z coordinate.
+     * @pre The coordinates must be valid values.
+     * @post A Position object is created with the specified coordinates.
+     *
+     */
     public Position(double x, double y, double z)
     {
         this.x = x;

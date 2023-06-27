@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<Dialog xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.view.MainScreenDelegate">
+    <dialogPane>
+        <DialogPane>
+            <content>
+                <GridPane>
+                    <Text wrappingWidth="200" text="ABOUT TEXT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+                </GridPane>
+            </content>
+            <buttonTypes>
+                <ButtonType text="OK"/>
+            </buttonTypes>
+        </DialogPane>
+    </dialogPane>
+</Dialog>

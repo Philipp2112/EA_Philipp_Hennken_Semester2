@@ -1,36 +1,32 @@
 package org.example.model;
 
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-import org.example.client.Constants;
-
+/** THis class implements a drone with all its components.
+ * @author philipp.hennken
+ * @version 18.0.2
+ */
 public class Drone
 {
     private Battery battery;
-    private Velocity velocity = new Velocity(0);
+    private Velocity velocity = new Velocity(0,0,0);
     private Position position;
-    private Position previousPosition = new Position(Constants.START_X_VALUE,Constants.START_Y_VALUE,Constants.START_Z_VALUE);
     private String movement;
+    private LidarSensor lidarSensor = new LidarSensor(0.0);
 
+    /** This constructor creates a new Drone with the specified position and a Battery with chargeLevel one.
+     *
+     * @param position The initial position of the drone.
+     * @pre The position parameter must be a valid Position object.
+     * @post A new instance of the Drone class is created.
+     */
     public Drone(Position position)
     {
         this.position = position;
         this.battery = new Battery(1);
     }
 
-    public Position getPreviousPosition()
+    public Velocity getVelocity()
     {
-        return previousPosition;
-    }
-
-    public void setPreviousPosition(Position previousPosition)
-    {
-        this.previousPosition = previousPosition;
-    }
-
-
-    public Number getVelocity()
-    {
-        return velocity.getVelocity();
+        return velocity;
     }
 
     public void setVelocity(Velocity velocity)
@@ -66,5 +62,15 @@ public class Drone
     public Battery getBattery()
     {
         return battery;
+    }
+
+    public LidarSensor getLidarSensor()
+    {
+        return lidarSensor;
+    }
+
+    public void setLidarSensor(LidarSensor lidarSensor)
+    {
+        this.lidarSensor = lidarSensor;
     }
 }

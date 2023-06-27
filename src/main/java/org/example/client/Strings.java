@@ -1,12 +1,15 @@
 package org.example.client;
 
+/**This class contains every necessary string used in the program.
+ * @author philipp.hennken
+ * @version 18.0.2
+ */
 public interface Strings
 {
-
-    String FEHLER_IP_ADRESSE = "IP-Adresse konnte nicht ermittelt werden.";
-    String IO_FEHLER_BEI_VERBINDUNGSAUFBAU = "Beim Verbindungsaufbau ist ein IO-Fehler aufgetreten.";
-    String VERBINDUNGSAUFBAU_NICHT_ERLAUBT = "Verbindungsaufbau nicht erlaubt.";
-    String ILLEGALER_PORT = "Illegaler Port.";
+    String ERROR_IP_ADRESSE = "IP-Adresse konnte nicht ermittelt werden.";
+    String IO_ERROR_DURING_CONNECTION_BUILD = "Beim Verbindungsaufbau ist ein IO-Fehler aufgetreten.";
+    String CONNECTION_DENIED = "Verbindungsaufbau nicht erlaubt.";
+    String ILLEGAL_PORT = "Illegaler Port.";
     String LOCALHOST = "localhost";
     String SERVER_IS_RUNNING = "Server läuft";
     String NOT_MOVING = "notMoving";
