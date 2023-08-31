@@ -7,10 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.NumberStringConverter;
-import org.example.client.Constants;
-import org.example.client.Strings;
+import org.example.res.Constants;
+import org.example.res.Strings;
 import org.example.control.PlannedFlight;
-import org.example.model.DroneController;
+import org.example.control.DroneController;
 import org.example.model.Position;
 
 /**This class sets everything up that is necessary for displaying data for the planned flight.
@@ -88,16 +88,20 @@ public class Planning
     {
         try
         {
-            if (Double.parseDouble(zCoordinateEntry.getText()) >= 180 && Double.parseDouble(zCoordinateEntry.getText()) <= 1800 &&
-                    Double.parseDouble(xCoordinateEntry.getText()) >= -800 && Double.parseDouble(xCoordinateEntry.getText()) <= 800)
+            if (Double.parseDouble(zCoordinateEntry.getText()) >= Constants.MIN_Z_COODINATE &&
+                    Double.parseDouble(zCoordinateEntry.getText()) <= Constants.MAX_Z_COODINATE &&
+                    Double.parseDouble(xCoordinateEntry.getText()) >= Constants.MIN_X_COODINATE &&
+                    Double.parseDouble(xCoordinateEntry.getText()) <= Constants.MAX_X_COODINATE &&
+                    Double.parseDouble(yCoordinateEntry.getText()) >= Constants.MIN_Y_COODINATE)
             {
-                positions.add(new Position(Double.parseDouble(xCoordinateEntry.getText()),Double.parseDouble(yCoordinateEntry.getText()),Double.parseDouble(zCoordinateEntry.getText())));
+                positions.add(new Position(
+                        Double.parseDouble(xCoordinateEntry.getText()),Double.parseDouble(yCoordinateEntry.getText()),Double.parseDouble(zCoordinateEntry.getText())));
                 tableWithCoordinates.setItems(positions);
                 infoLabel.setText(Strings.POSITION_ADDED + coordinateToString(positions.get(positions.size()-1)));;
             }
             else
             {
-                infoLabel.setText("Die gewünschten Koordinaten liegen \naußerhalb der Terrain-Fläche.");
+                infoLabel.setText(Strings.OUT_OF_BORDER);
             }
         }catch (NumberFormatException numberFormatException)
         {

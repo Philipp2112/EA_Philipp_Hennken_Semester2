@@ -1,7 +1,7 @@
-package org.example.communication;
+package org.example.control;
 import com.google.gson.Gson;
-import org.example.client.Constants;
-import org.example.client.Strings;
+import org.example.res.Constants;
+import org.example.res.Strings;
 import org.example.model.*;
 
 import java.io.BufferedReader;
@@ -35,7 +35,13 @@ public class DroneControllClient implements Runnable
 
         while (true)
         {
-            dataPackage = gsonObject.fromJson(sendCommandAndWaitForAnswer(socket, gsonObject.toJson(drone.getMovement())),DataPackage.class);
+            try
+            {
+                dataPackage = gsonObject.fromJson(sendCommandAndWaitForAnswer(socket, gsonObject.toJson(drone.getMovement())),DataPackage.class);
+            } catch (ConnectionLostException e)
+            {
+                throw new RuntimeException(e);
+            }
             drone.setPosition(dataPackage.getPosition());
             drone.getLidarSensor().setDistanceToGround(dataPackage.getLidarSensor());
             drone.setVelocity(dataPackage.getVelocity());
@@ -78,7 +84,7 @@ public class DroneControllClient implements Runnable
      *@post The command is sent to the Unity simulation, and the response is returned as a string.
      *@post The input and output streams with the Unity simulation are properly closed.
      */
-    private String sendCommandAndWaitForAnswer(Socket socket, String command)
+    private String sendCommandAndWaitForAnswer(Socket socket, String command) throws ConnectionLostException
     {
         PrintWriter outToUnity = null;
         BufferedReader inFromUnity = null;
@@ -92,9 +98,9 @@ public class DroneControllClient implements Runnable
             inFromUnityString = inFromUnity.readLine();
             return inFromUnityString;
         }
-        catch (IOException e)
-        {//TODO was passiert beim neustart von unity?
-            throw new RuntimeException(e);
+        catch (IOException | NullPointerException exception)
+        {
+            throw new ConnectionLostException(Strings.CONNECTION_LOST_TO_UNITY);
         }
     }
 

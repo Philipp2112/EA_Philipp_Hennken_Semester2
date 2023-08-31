@@ -2,6 +2,7 @@ package org.example.model;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Dialog;
+import org.example.res.Constants;
 
 import java.awt.*;
 import java.io.File;
@@ -36,27 +37,10 @@ public class Battery extends Actuator
     @Override
     public void calculateActuatorData()
     {
-            chargeLevel = chargeLevel - 0.000002;
-            //System.out.println(Math.round(chargeLevel * 10.0)/10.0);
-            //TODO warnhinweis
-            /*if (Math.round(chargeLevel * 10.0)/10.0 == 0.2)
-            {
-                FXMLLoader loader = new FXMLLoader();
-                String absolutePath = "C:\\Users\\philipp.hennken\\eclipse-workspace\\EA_Philipp_Hennken_Semester2\\src\\main\\resources\\org.example\\about.fxml";
-                Dialog<Void> dialog = null;
-                try
-                {
-                    loader.setLocation(new File(absolutePath).toURI().toURL());
-                    dialog = loader.load();
-                } catch (IOException ignored)
-                {
-
-                }
-                dialog.show();
-            }*/
+            chargeLevel = chargeLevel - Constants.CHARGE_LEVEL_CONSTANT;
             if (chargeLevel <= 0)
             {
-                System.exit(23);
+                System.exit(0);
             }
     }
 

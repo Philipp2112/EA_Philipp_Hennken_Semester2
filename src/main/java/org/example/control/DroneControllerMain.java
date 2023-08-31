@@ -1,4 +1,4 @@
-package org.example.communication;
+package org.example.control;
 
 /**This class starts threads for the DroneController.
  * @author philipp.hennken

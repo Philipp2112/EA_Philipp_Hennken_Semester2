@@ -3,9 +3,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
-import org.example.client.Constants;
-import org.example.client.Strings;
-import org.example.model.DroneController;
+import org.example.res.Constants;
+import org.example.res.Strings;
+import org.example.control.DroneController;
 
 
 /**This class is the connection between the planned flight and the GUI.

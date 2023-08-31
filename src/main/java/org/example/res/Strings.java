@@ -1,4 +1,4 @@
-package org.example.client;
+package org.example.res;
 
 /**This class contains every necessary string used in the program.
  * @author philipp.hennken
@@ -33,4 +33,6 @@ public interface Strings
     String Z_COLON = " Z: ";
     String POSITION_REMOVED = "Position entfernt: \n";
     String NO_COORDINATES_TO_REMOVE = "Keine löschbare Koordinate \n verfügbar.";
+    String CONNECTION_LOST_TO_UNITY = "Die Verbindung zu Unity ist verloren gegangen";
+    String OUT_OF_BORDER = "Die gewünschten Koordinaten liegen \naußerhalb der Terrain-Fläche.";
 }

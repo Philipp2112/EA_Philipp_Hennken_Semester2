@@ -1,7 +1,7 @@
-package org.example.communication;
+package org.example.control;
 import com.google.gson.Gson;
-import org.example.client.Constants;
-import org.example.client.Strings;
+import org.example.res.Constants;
+import org.example.res.Strings;
 import org.example.model.DataPackage;
 import org.example.model.Drone;
 import org.example.model.Position;
@@ -67,6 +67,7 @@ public class DroneControllServer implements Runnable
             {
                 dataPackage.setPosition(drone.getPosition());
                 dataPackage.setLidarSensor(drone.getLidarSensor().getDistanceToGround());
+                dataPackage.setVelocity(drone.getVelocity());
                 client = serverSocket.accept();
                 printWriter = new PrintWriter(client.getOutputStream(), true);
                 printWriter.println(gson.toJson(dataPackage));

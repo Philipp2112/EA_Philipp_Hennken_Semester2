@@ -1,10 +1,11 @@
-package org.example.view;
+package org.example.control;
 
 import com.google.gson.Gson;
 import javafx.application.Platform;
-import org.example.client.Constants;
-import org.example.client.Strings;
+import org.example.res.Constants;
+import org.example.res.Strings;
 import org.example.model.*;
+import org.example.view.FreeFlightDelegate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,7 +49,6 @@ public class PlanningSoftwareClient implements Runnable
                 Platform.runLater(() ->
                 {
                     setPropertyValues();
-
                 });
                 Thread.sleep(Constants.GET_DATA_SLEEP);
             }

@@ -12,7 +12,7 @@
         <DialogPane>
             <content>
                 <GridPane>
-                    <Text wrappingWidth="200" text="ABOUT TEXT" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Text wrappingWidth="200" text="Version 1.0 Autor: Philipp Hennken Dieses Programm dient zum manuellen und geplanten Flug einer Drohne in der Simulationssoftware Unity. Unter dem Reiter 'Flug' kann die Drohne manuelle geflogen und die Werte ausgelesen werden. Unter dem Reiter 'Planung' kann eine vorher definierte Route abgeflogen werden. An jedem Punkt hält die Drohne für eine gewisse Zeit an, sodass die Daten ausgelesen werden können. Bei Rückfragen kontaktieren Sie mich gerne unter phennken@stud.hs-bremen.de" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
                 </GridPane>
             </content>

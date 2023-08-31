@@ -22,10 +22,10 @@
       </TableView>
        <SplitPane dividerPositions="0.5" layoutX="469.0" layoutY="221.0" prefHeight="28.0" prefWidth="292.0">
            <items>
-               <Label prefHeight="28.0" prefWidth="120.0" text="Geschwindigkeit" />
-               <Label fx:id="anzeigeXVelocity" prefHeight="26.0" prefWidth="30.0" />
-               <Label fx:id="anzeigeYVelocity" prefHeight="26.0" prefWidth="30.0" />
-               <Label fx:id="anzeigeZVelocity" prefHeight="26.0" prefWidth="30.0" />
+               <Label prefHeight="28.0" prefWidth="120.0" text="Pace 'X | Y | Z'" />
+               <Label fx:id="anzeigeXVelocity" prefHeight="26.0" prefWidth="97.0" />
+               <Label fx:id="anzeigeYVelocity" prefHeight="26.0" prefWidth="98.0" />
+               <Label fx:id="anzeigeZVelocity" prefHeight="26.0" prefWidth="97.0" />
            </items>
        </SplitPane>
        <SplitPane dividerPositions="0.5" layoutX="469.0" layoutY="259.0" prefHeight="28.0" prefWidth="292.0">

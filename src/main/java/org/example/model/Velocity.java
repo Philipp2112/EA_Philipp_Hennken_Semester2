@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Velocity
 {
-    //private final double velocity;
     @SerializedName("x")
     private double xVelocity;
     @SerializedName("y")
@@ -16,18 +15,20 @@ public class Velocity
     @SerializedName("z")
     private double zVelocity;
 
-    ///TODO kommentar
+    /**Constructs a new Velocity object with the specified velocities.
+     *
+     * @param xVelocity the x-component of the velocity
+     * @param yVelocity the y-component of the velocity
+     * @param zVelocity the z-component of the velocity
+     * @pre xVelocity, yVelocity, and zVelocity must be valid double values.
+     * @post The Velocity object is initialized with the provided velocities.
+     */
     public Velocity(double xVelocity, double yVelocity, double zVelocity)
     {
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.zVelocity = zVelocity;
     }
-
-    /*public double getVelocity()
-    {
-        return velocity;
-    }*/
 
     public double getxVelocity()
     {

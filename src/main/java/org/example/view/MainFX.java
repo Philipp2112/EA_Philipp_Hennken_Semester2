@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.client.Constants;
-import org.example.client.Strings;
-import org.example.communication.DroneControllerMain;
+import org.example.res.Constants;
+import org.example.res.Strings;
+import org.example.control.DroneControllerMain;
+import org.example.control.PlanningSoftwareClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +31,6 @@ public class MainFX extends Application
     public static void main(String[] args)
     {
         runProgram();
-
     }
 
     /**It starts the DroneController and the Thread for the planning software.

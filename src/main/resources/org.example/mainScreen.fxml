@@ -18,14 +18,14 @@
    <center>
       <TabPane prefHeight="367.0" prefWidth="218.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Planung">
-            <content>
-               <fx:include source="planning.fxml" />
-            </content>
-          </Tab>
-          <Tab text="Flug">
-            <content>
-                <fx:include source="freeFlight.fxml" />
+            <Tab text="Flug">
+                <content>
+                    <fx:include source="freeFlight.fxml" />
+                </content>
+            </Tab>
+            <Tab text="Planung">
+              <content>
+                <fx:include source="planning.fxml" />
             </content>
           </Tab>
         </tabs>

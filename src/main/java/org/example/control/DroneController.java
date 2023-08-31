@@ -1,10 +1,11 @@
-package org.example.model;
+package org.example.control;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import jdk.jfr.FlightRecorder;
-import org.example.client.Constants;
+import org.example.model.Battery;
+import org.example.model.Drone;
+import org.example.model.Position;
 
 /**This class controls the drone and its attributes. The drone instance is created and managed here.
  * @author philipp.hennken
@@ -89,9 +90,9 @@ public class DroneController
         this.zVelocityProperty.addListener(new ChangeListener<Number>()
         {
             @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number alteGeschwindigkeit, Number updatedYVelocity)
+            public void changed(ObservableValue<? extends Number> observableValue, Number alteGeschwindigkeit, Number updatedZVelocity)
             {
-                drone.getVelocity().setxVelocity((Double) updatedYVelocity);
+                drone.getVelocity().setzVelocity((Double) updatedZVelocity);
             }
         });
 

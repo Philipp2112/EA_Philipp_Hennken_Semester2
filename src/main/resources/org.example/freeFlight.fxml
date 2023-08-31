@@ -32,10 +32,10 @@
             </GridPane>
             <SplitPane dividerPositions="0.4241379310344828, 0.7758620689655172, 0.8931034482758621" layoutX="169.0" layoutY="21.0" prefHeight="28.0" prefWidth="292.0">
                 <items>
-                    <Label prefHeight="28.0" prefWidth="120.0" text="Geschwindigkeit" />
-                    <Label fx:id="anzeigeXVelocity" prefHeight="26.0" prefWidth="58.0" />
-               <Label fx:id="anzeigeYVelocity" prefHeight="26.0" prefWidth="63.0" />
-               <Label fx:id="anzeigeZVelocity" prefHeight="26.0" prefWidth="48.0" />
+                    <Label prefHeight="28.0" prefWidth="120.0" text="Pace 'X | Y | Z'" />
+                    <Label fx:id="anzeigeXVelocity" prefHeight="26.0" prefWidth="60.0" />
+               <Label fx:id="anzeigeYVelocity" prefHeight="26.0" prefWidth="60.0" />
+               <Label fx:id="anzeigeZVelocity" prefHeight="26.0" prefWidth="60.0" />
                 </items>
             </SplitPane>
             <SplitPane dividerPositions="0.5" layoutX="169.0" layoutY="59.0" prefHeight="28.0" prefWidth="292.0">

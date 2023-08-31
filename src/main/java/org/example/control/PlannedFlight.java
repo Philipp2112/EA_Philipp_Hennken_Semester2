@@ -1,8 +1,7 @@
 package org.example.control;
 
-import org.example.client.Constants;
-import org.example.client.Strings;
-import org.example.model.DroneController;
+import org.example.res.Constants;
+import org.example.res.Strings;
 import org.example.model.Position;
 import org.example.view.FreeFlightDelegate;
 import org.example.view.Planning;
@@ -66,7 +65,6 @@ public class PlannedFlight implements Runnable
         flyToXDestinationAndStop(destinationX);
         flyToZDestinationAndStop(destinationZ);
         flyToYDestinationAndStop(destinationY);
-
     }
 
     /** This method lets the drone fly to the correct y-coordinate.

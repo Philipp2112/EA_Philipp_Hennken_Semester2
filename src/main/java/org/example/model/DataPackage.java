@@ -7,7 +7,7 @@ package org.example.model;
 public class DataPackage
 {
     private Position position;
-    private final Velocity velocity;
+    private Velocity velocity;
     private double lidarSensor;
 
 
@@ -46,5 +46,10 @@ public class DataPackage
     public Velocity getVelocity()
     {
         return velocity;
+    }
+
+    public void setVelocity(Velocity velocity)
+    {
+        this.velocity = velocity;
     }
 }
